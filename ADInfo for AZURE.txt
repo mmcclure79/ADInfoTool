@@ -1,0 +1,175 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+                                                                                                                        Try the new cross-platform PowerShell https://aka.ms/pscore6                                                                                                                                                                                    PS C:\WINDOWS\system32> Connect-AzureAD                                                                                 Connect-AzureAD : The term 'Connect-AzureAD' is not recognized as the name of a cmdlet, function, script file, or       operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try
+again.
+At line:1 char:1
++ Connect-AzureAD
++ ~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Connect-AzureAD:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\WINDOWS\system32> Connect-AzureAD
+Connect-AzureAD : The term 'Connect-AzureAD' is not recognized as the name of a cmdlet, function, script file, or
+operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try
+again.
+At line:1 char:1
++ Connect-AzureAD
++ ~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Connect-AzureAD:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\WINDOWS\system32> Install-Module AzureAD
+
+NuGet provider is required to continue
+PowerShellGet requires NuGet provider version '2.8.5.201' or newer to interact with NuGet-based repositories. The NuGet
+ provider must be available in 'C:\Program Files\PackageManagement\ProviderAssemblies' or
+'C:\Users\mmcclure\AppData\Local\PackageManagement\ProviderAssemblies'. You can also install the NuGet provider by
+running 'Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force'. Do you want PowerShellGet to install
+and import the NuGet provider now?
+[Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): y
+
+Untrusted repository
+You are installing the modules from an untrusted repository. If you trust this repository, change its
+InstallationPolicy value by running the Set-PSRepository cmdlet. Are you sure you want to install the modules from
+'PSGallery'?
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): a
+PS C:\WINDOWS\system32> Connect-AzureAD
+
+Account            Environment TenantId                             TenantDomain AccountType
+-------            ----------- --------                             ------------ -----------
+admin@ywca-shr.org AzureCloud  a8c26837-ca3a-452f-bf49-38f5b37e0eef ywca-shr.org User
+
+
+PS C:\WINDOWS\system32> Get-AzureADUser -ObjectId qadams@ywca-shr.org
+
+ObjectId                             DisplayName     UserPrincipalName   UserType
+--------                             -----------     -----------------   --------
+be591c37-7243-4709-97a2-6300e2001bce Qwayshawn Adams qadams@ywca-shr.org Member
+
+
+PS C:\WINDOWS\system32> Get-AzureADUser -ObjectId qadams@ywca-shr.org  | Select-Object @{N="PasswordNeverExpires";E={$_.PasswordPolicies -contains "DisablePasswordExpiration"}}
+
+PasswordNeverExpires
+--------------------
+               False
+
+
+PS C:\WINDOWS\system32> Get-AzureADUser -ObjectId qadams@ywca-shr.org |Select-Object *
+
+
+ExtensionProperty              : {[odata.metadata, https://graph.windows.net/a8c26837-ca3a-452f-bf49-38f5b37e0eef/$meta
+                                 data#directoryObjects/@Element], [odata.type, Microsoft.DirectoryServices.User],
+                                 [createdDateTime, 9/18/2018 2:01:38 PM], [employeeId, ]...}
+DeletionTimestamp              :
+ObjectId                       : be591c37-7243-4709-97a2-6300e2001bce
+ObjectType                     : User
+AccountEnabled                 : True
+AgeGroup                       :
+AssignedLicenses               : {class AssignedLicense {
+                                   DisabledPlans: System.Collections.Generic.List`1[System.String]
+                                   SkuId: 6634e0ce-1a9f-428c-a498-f84ec7b8aa2e
+                                 }
+                                 }
+AssignedPlans                  : {class AssignedPlan {
+                                   AssignedTimestamp: 5/22/2019 12:34:44 AM
+                                   CapabilityStatus: Enabled
+                                   Service: SharePoint
+                                   ServicePlanId: c7699d2e-19aa-44de-8edf-1736da088ca1
+                                 }
+                                 , class AssignedPlan {
+                                   AssignedTimestamp: 5/22/2019 12:34:44 AM
+                                   CapabilityStatus: Enabled
+                                   Service: SharePoint
+                                   ServicePlanId: e95bec33-7c88-4a70-8e19-b10bd9d0c014
+                                 }
+                                 , class AssignedPlan {
+                                   AssignedTimestamp: 9/18/2018 2:01:38 PM
+                                   CapabilityStatus: Enabled
+                                   Service: exchange
+                                   ServicePlanId: 9aaf7827-d63c-4b61-89c3-182f06f82e5c
+                                 }
+                                 , class AssignedPlan {
+                                   AssignedTimestamp: 9/18/2018 2:01:38 PM
+                                   CapabilityStatus: Enabled
+                                   Service: MicrosoftCommunicationsOnline
+                                   ServicePlanId: 0feaeb32-d00e-4d66-bd5a-43b5b83db82c
+                                 }
+                                 ...}
+City                           :
+CompanyName                    :
+ConsentProvidedForMinor        :
+Country                        :
+CreationType                   :
+Department                     :
+DirSyncEnabled                 :
+DisplayName                    : Qwayshawn Adams
+FacsimileTelephoneNumber       :
+GivenName                      : Qwayshawn
+IsCompromised                  :
+ImmutableId                    :
+JobTitle                       :
+LastDirSyncTime                :
+LegalAgeGroupClassification    :
+Mail                           : qadams@ywca-shr.org
+MailNickName                   : qadams
+Mobile                         :
+OnPremisesSecurityIdentifier   :
+OtherMails                     : {}
+PasswordPolicies               : None
+PasswordProfile                :
+PhysicalDeliveryOfficeName     :
+PostalCode                     :
+PreferredLanguage              : en-US
+ProvisionedPlans               : {class ProvisionedPlan {
+                                   CapabilityStatus: Enabled
+                                   ProvisioningStatus: Success
+                                   Service: SharePoint
+                                 }
+                                 , class ProvisionedPlan {
+                                   CapabilityStatus: Enabled
+                                   ProvisioningStatus: Success
+                                   Service: SharePoint
+                                 }
+                                 , class ProvisionedPlan {
+                                   CapabilityStatus: Enabled
+                                   ProvisioningStatus: Success
+                                   Service: MicrosoftCommunicationsOnline
+                                 }
+                                 , class ProvisionedPlan {                                                                                                 CapabilityStatus: Enabled                                                                                               ProvisioningStatus: Success                                                                                             Service: exchange                                                                                                     }                                                                                                                       }
+ProvisioningErrors             : {}
+ProxyAddresses                 : {smtp:qadams@YWCASouthHamptonRoads.onmicrosoft.com, SMTP:qadams@ywca-shr.org}
+RefreshTokensValidFromDateTime : 6/12/2020 1:22:47 PM
+ShowInAddressList              :
+SignInNames                    : {}
+SipProxyAddress                : qadams@ywca-shr.org
+State                          :
+StreetAddress                  :
+Surname                        : Adams
+TelephoneNumber                :
+UsageLocation                  : US
+UserPrincipalName              : qadams@ywca-shr.org
+UserState                      :
+UserStateChangedOn             :
+UserType                       : Member
+
+
+
+
+PS C:\WINDOWS\system32> install-module MSOnline
+
+Untrusted repository
+You are installing the modules from an untrusted repository. If you trust this repository, change its
+InstallationPolicy value by running the Set-PSRepository cmdlet. Are you sure you want to install the modules from
+'PSGallery'?
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): a
+PS C:\WINDOWS\system32> Connect-MsolService
+PS C:\WINDOWS\system32> Import-Module MSOnline
+
+PS C:\WINDOWS\system32> Get-MsolUser -UserPrincipalName 'qadams@ywca-shr.org' | Select LastPasswordChangeTimestamp
+
+LastPasswordChangeTimestamp
+---------------------------
+6/12/2020 1:22:47 PM
+
+
+PS C:\WINDOWS\system32>
